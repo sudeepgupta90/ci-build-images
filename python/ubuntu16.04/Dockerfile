@@ -9,7 +9,6 @@ ENV PYTHON_VERSION=${PYTHON_VERSION}
 RUN echo "deb http://ppa.launchpad.net/deadsnakes/ppa/ubuntu xenial main \ndeb-src http://ppa.launchpad.net/deadsnakes/ppa/ubuntu xenial main" | tee /etc/apt/sources.list.d/deadsnakes.list \
     && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys F23C5A6CF475977595C89F51BA6932366A755776
 
-#install dependencies for minimal, dbfsfuse, standard, python
 RUN apt-get update \
     && apt-get install --no-install-recommends -y \
         wget \
@@ -19,6 +18,7 @@ RUN apt-get update \
         procps \
         openssh-server \
         build-essential \
+        gnupg \
         # python
         python${PYTHON_VERSION} python${PYTHON_VERSION}-dev python${PYTHON_VERSION}-distutils python${PYTHON_VERSION}-lib2to3 python${PYTHON_VERSION}-gdbm \
     && apt-get clean \
